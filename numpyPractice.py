@@ -1,7 +1,14 @@
+#%%
 import numpy as np
+import matplotlib.pyplot as plt
 
-# 多次元配列（行列）の作成 （簡単だ）
-x = np.array([[1.0, 2.0, 3.0], [11.0, 12.0, 13.0]])
-for i in x:
-  for j in i:
-    print(j)
+print("hello")
+
+# 0 ~ 6
+x = np.arange(0, 6, 0.1)
+y = np.sin(x)
+
+plt.plot(x, y)
+plt.show()
+# %%
+# %%
