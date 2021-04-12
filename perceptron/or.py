@@ -1,6 +1,6 @@
 import numpy as np
 
-def AND(x1, x2):
+def OR(x1, x2):
   # w1,2 = weight, theta = threshold
   # x1,2 1 or 0 input
   x = np.array([x1, x2])
@@ -13,7 +13,7 @@ def AND(x1, x2):
     return 1
 
 
-print(AND(0, 0))
-print(AND(1, 0))
-print(AND(0, 1))
-print(AND(1, 1))
+print(OR(0, 0))  # 0
+print(OR(1, 0))  # 1
+print(OR(0, 1))  # 1
+print(OR(1, 1))  # 1
