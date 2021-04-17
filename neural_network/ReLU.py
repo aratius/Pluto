@@ -2,7 +2,7 @@ import numpy as np
 import matplotlib.pylab as plt
 
 def ReLU(x):
-  return x * (x > 0.0)
+  return x * (x > 0.0)  # x > 0.0 expects 1 or 0
 
 x = np.arange(-5.0, 5.0, 0.1)
 y = ReLU(x)
