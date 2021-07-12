@@ -1,4 +1,3 @@
-
 import numpy as np
 
 # ２乗和誤差
