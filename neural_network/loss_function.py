@@ -7,7 +7,7 @@ def mean_squared_error(y, t):
 
 # 交差エントロピー誤差
 def cross_entropy_error(y, t):
-    # 0に鳴らないための微小な値
+    # log(0)に鳴らないための微小な値 (infになってしまう)
     delta = 1e-7
     return - np.sum(t * np.log(y + delta))
 
