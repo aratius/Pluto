@@ -21,12 +21,18 @@ class simpleNet:
 
     return loss
 
+# 初期化
 net = simpleNet()
+# 初期座標
 x = np.array([0.6, 0.9])
+# 予測する
 p = net.predict(x)
+# 予測結果
 mt = np.argmax(p)
 
+# 正解
 t = np.array([0, 0, 1])
+# 損失
 loss = net.loss(x, t)
 
 # 上記の例では2が正解なので2のときにlossがいちばんすくなくなる
