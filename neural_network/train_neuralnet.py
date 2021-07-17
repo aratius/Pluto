@@ -19,6 +19,7 @@ test_acc_list = []
 # 1エポックあたりの繰り返し数
 iter_per_epoch = max(train_size / batch_size, 1)
 
+# インスタンス作成
 network = TwoLayerNet(input_size=784, hidden_size=50, output_size=10)
 
 for i in range(iters_num):
