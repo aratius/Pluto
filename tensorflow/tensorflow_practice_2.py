@@ -2,13 +2,6 @@ import tensorflow
 from tensorflow import keras
 import matplotlib.pyplot as plt
 
-# バッチサイズ
-batch_size = 128
-# 分類クラス数
-num_class = 10
-# エポック数
-epochs = 20
-
 # mnist読み込み
 (x_train, y_train), (x_test, y_test) = keras.datasets.mnist.load_data()
 
@@ -34,3 +27,9 @@ model.fit(x_train, y_train, epochs=5)
 
 # まだ見たことのないテストデータを読ませて計測
 model.evaluate(x_test, y_test)
+
+# 学習済みモデルを用いて予測と正解を自分で照らし合わせてみる
+# 正解
+print(y_test[0:10])
+# len:10の配列の値が一番大きいものがモデルが導き出した答え
+print(model.predict(x_test[0:10]))
