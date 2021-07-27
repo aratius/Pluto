@@ -14,4 +14,4 @@ class GANMonitor(keras.callbacks.Callback):
         generated_images.numpy()
         for i in range(self.num_img):
             img = keras.preprocessing.image.array_to_img(generated_images[i])
-            img.save("generated_img_%03d_%d.png" % (epoch, i))
+            img.save("gan/p1/generated/generated_img_%03d_%d.png" % (epoch, i))
