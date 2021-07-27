@@ -10,8 +10,8 @@ import os, sys
 import gdown  # google driveものをDLするパッケージ
 from zipfile import ZipFile
 sys.path.append("/Users/matsumotoarata/git/ME/Python/deep-learning")
-from gan.GAN import GAN
-from gan.GANMonitor import GANMonitor
+from gan.p1.GAN import GAN
+from gan.p1.GANMonitor import GANMonitor
 
 # 最初に一回実行したらあとはいらない記述 ----------
 # celebAデータセット（顔画像）を読み込み -----
@@ -30,16 +30,16 @@ from gan.GANMonitor import GANMonitor
 
 # データセットを作成、値を正規化
 dataset = keras.preprocessing.image_dataset_from_directory(
-  "celeba_gan", label_mode=None, image_size=(64,64), batch_size=32
+  "gan/me/dataimg", label_mode=None, image_size=(64,64), batch_size=32
 )
 dataset = dataset.map(lambda x: x / 255.0)
 
 # サンプル画像読み込み・表示
-# for x in dataset:
-#   plt.axis("off")
-#   plt.imshow((x.numpy() * 255).astype("int32")[0])
-#   break
-# plt.show()
+for x in dataset:
+  plt.axis("off")
+  plt.imshow((x.numpy() * 255).astype("int32")[0])
+  break
+plt.show()
 
 # 鑑定者のニューラルネットワーク
 discriminator = keras.Sequential(
