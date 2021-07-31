@@ -11,5 +11,6 @@ class ModelSaver(keras.callbacks.Callback):
 
     def on_epoch_end(self, epoch, logs=None):
       # モデルの途中経過を保存
-      self.gen_model.save("gan/memod/gen/gen_epoch" + str(epoch) + ".h5")
-      self.disc_model.save("gan/memod/disc/disc_epoch" + str(epoch) + ".h5")
+      if(epoch % 10 == 0):
+        self.gen_model.save("gan/memod/gen/gen_epoch" + str(epoch) + ".h5")
+        self.disc_model.save("gan/memod/disc/disc_epoch" + str(epoch) + ".h5")

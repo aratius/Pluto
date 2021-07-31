@@ -1,1 +1,4 @@
 dataimg
+*.h5
+generated
+dataimg.zip

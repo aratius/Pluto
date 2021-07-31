@@ -7,6 +7,7 @@ from tensorflow.keras import layers
 import numpy as np
 import matplotlib.pyplot as plt
 import os, sys
+
 import gdown  # google driveものをDLするパッケージ
 from zipfile import ZipFile
 sys.path.append("/Users/matsumotoarata/git/ME/Python/deep-learning")
@@ -53,8 +54,10 @@ discriminator = keras.Sequential(
     layers.LeakyReLU(alpha=0.2),
     layers.Conv2D(128, kernel_size=4, strides=2, padding="same"),
     layers.LeakyReLU(alpha=0.2),
+    layers.Dropout(0.2),
     layers.Conv2D(128, kernel_size=4, strides=2, padding="same"),
     layers.LeakyReLU(alpha=0.2),
+    layers.Dropout(0.2),
     layers.Flatten(),
     # 捨てる
     layers.Dropout(0.2),
@@ -63,6 +66,7 @@ discriminator = keras.Sequential(
   ],
   name="discriminator"
 )
+# 正常に動くかチェック
 discriminator.summary()
 
 # 贋作者のニューラルネットワーク
@@ -74,24 +78,28 @@ generator= keras.Sequential(
     layers.Reshape((16, 16, 128)),
     layers.Conv2DTranspose(128, kernel_size=4, strides=2, padding="same"),
     layers.LeakyReLU(alpha=0.2),
+    layers.BatchNormalization(momentum=0.99),
     layers.Conv2DTranspose(256, kernel_size=4, strides=2, padding="same"),
     layers.LeakyReLU(alpha=0.2),
+    layers.BatchNormalization(momentum=0.99),
     layers.Conv2DTranspose(512, kernel_size=4, strides=2, padding="same"),
     layers.LeakyReLU(alpha=0.2),
+    layers.BatchNormalization(momentum=0.99),
     layers.Conv2D(3, kernel_size=5, padding="same", activation="sigmoid")
   ],
   name="generator"
 )
+# 正常に動くかチェック
 generator.summary()
 
-epochs = 300  # In practice, use ~100 epochs
+epochs = 500  # In practice, use ~100 epochs
 # GANをインスタンス化
 gan = GAN(discriminator=discriminator, generator=generator, latent_dim=latent_dim)
 # 最適化手法を設定
 gan.compile(
-    d_optimizer=keras.optimizers.Adam(learning_rate=0.0001),
-    g_optimizer=keras.optimizers.Adam(learning_rate=0.0001),
-    loss_fn=keras.losses.BinaryCrossentropy(),
+  d_optimizer=keras.optimizers.Adam(learning_rate=0.0001),
+  g_optimizer=keras.optimizers.Adam(learning_rate=0.0001),
+  loss_fn=keras.losses.BinaryCrossentropy(),
 )
 
 generator.save("gan/memod/gen/test.h5")
